@@ -1,9 +1,13 @@
 const fs = require('fs')
+const path = require('path')
 
-const a  = fs.readFileSync('./input.txt','utf-8')
-const b  = fs.readFileSync('./input.txt','utf-8')
-const c  = fs.readFileSync('./input.txt','utf-8')
-
-const res = Number(a) + Number(b) + Number(c)
-
-fs.writeFileSync('output.txt', String(res))
+const inputfilepath = path.join(__dirname,'input.txt')
+const outputfilepath = path.join(__dirname,'output.txt')
+const data  = fs.readFileSync(inputfilepath,'utf-8')
+const res  = data.split("\n")
+let sum = 0
+for (let i of res){
+    const number  = Number(i.split(" ")[1])
+    sum +=number
+}
+fs.writeFileSync(outputfilepath,sum.toString())
